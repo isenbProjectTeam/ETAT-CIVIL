@@ -1,0 +1,85 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "agentDeclarant",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "naissance"
+        },
+        {
+            "relationshipName": "pere",
+            "otherEntityName": "personne",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "prenom"
+        },
+        {
+            "relationshipName": "mere",
+            "otherEntityName": "personne",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "prenom"
+        },
+        {
+            "relationshipName": "enfant",
+            "otherEntityName": "personne",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "prenom"
+        },
+        {
+            "relationshipName": "lieuDeclaration",
+            "otherEntityName": "ville",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nom"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numeroRegistre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mentionMarginale",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "1000"
+        },
+        {
+            "fieldName": "dateDeclaration",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170420223500",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "naissance",
+    "pagination": "infinite-scroll"
+}

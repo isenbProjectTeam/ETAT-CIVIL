@@ -1,0 +1,73 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPieceJointeLabel" data-translate="etatcivilApp.pieceJointe.home.createOrEditLabel">Create or edit a Piece Jointe</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pieceJointe.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pieceJointe.id" readonly />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setNom($file, vm.pieceJointe)">
+            <label class="control-label" data-translate="etatcivilApp.pieceJointe.nom" for="field_nom">Nom</label>
+            <div>
+                <div ng-if="vm.pieceJointe.nom" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.pieceJointe.nomContentType, vm.pieceJointe.nom)" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.pieceJointe.nomContentType}}, {{vm.byteSize(vm.pieceJointe.nom)}}</span>
+                    <button type="button" ng-click="vm.pieceJointe.nom=null;vm.pieceJointe.nomContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setNom($file, vm.pieceJointe)" data-translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="nom" id="field_nom"
+                    ng-model="vm.pieceJointe.nom"
+                    required minbytes="1" maxbytes="3145728"/>
+            <input type="hidden" class="form-control" name="nomContentType" id="field_nomContentType"
+                    ng-model="vm.pieceJointe.nomContentType" />
+            <div ng-show="editForm.nom.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nom.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.nom.$error.minbytes" data-translate="entity.validation.minbytes" translate-value-min="1">
+                    This field should be at least 1.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.nom.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="3145728">
+                    This field cannot be more than 3145728.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="etatcivilApp.pieceJointe.naissance" for="field_naissance">Naissance</label>
+            <select class="form-control" id="field_naissance" name="naissance" ng-model="vm.pieceJointe.naissance" ng-options="naissance as naissance.numeroRegistre for naissance in vm.naissances track by naissance.id" required>
+            </select>
+        </div>
+        <div ng-show="editForm.naissance.$invalid">
+            <p class="help-block"
+                ng-show="editForm.naissance.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="etatcivilApp.naissance.detail.title">Naissance</span> {{vm.naissance.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="etatcivilApp.naissance.numeroRegistre">Numero Registre</span></dt>
+        <dd>
+            <span>{{vm.naissance.numeroRegistre}}</span>
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.mentionMarginale">Mention Marginale</span></dt>
+        <dd>
+            <span>{{vm.naissance.mentionMarginale}}</span>
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.dateDeclaration">Date Declaration</span></dt>
+        <dd>
+            <span>{{vm.naissance.dateDeclaration | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.agentDeclarant">Agent Declarant</span></dt>
+        <dd>
+            {{vm.naissance.agentDeclarant.login}}
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.pere">Pere</span></dt>
+        <dd>
+            <a ui-sref="personne-detail({id:vm.naissance.pere.id})">{{vm.naissance.pere.prenom}}</a>
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.mere">Mere</span></dt>
+        <dd>
+            <a ui-sref="personne-detail({id:vm.naissance.mere.id})">{{vm.naissance.mere.prenom}}</a>
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.enfant">Enfant</span></dt>
+        <dd>
+            <a ui-sref="personne-detail({id:vm.naissance.enfant.id})">{{vm.naissance.enfant.prenom}}</a>
+        </dd>
+        <dt><span data-translate="etatcivilApp.naissance.lieuDeclaration">Lieu Declaration</span></dt>
+        <dd>
+            <a ui-sref="ville-detail({id:vm.naissance.lieuDeclaration.id})">{{vm.naissance.lieuDeclaration.nom}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="naissance-detail.edit({id:vm.naissance.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

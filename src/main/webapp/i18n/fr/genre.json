@@ -1,0 +1,9 @@
+{
+    "etatcivilApp": {
+        "Genre" : {
+            "null": "",
+            "Feminin": "Feminin",
+            "Masculin": "Masculin"
+        }
+    }
+}

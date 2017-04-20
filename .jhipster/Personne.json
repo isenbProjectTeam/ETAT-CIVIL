@@ -1,0 +1,84 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "pere",
+            "otherEntityName": "personne",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "prenom"
+        },
+        {
+            "relationshipName": "mere",
+            "otherEntityName": "personne",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "prenom"
+        },
+        {
+            "relationshipName": "adresse",
+            "otherEntityName": "adresse",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "rue"
+        },
+        {
+            "relationshipName": "paysNaissance",
+            "otherEntityName": "pays",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nom"
+        },
+        {
+            "relationshipName": "villeNaissance",
+            "otherEntityName": "ville",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nom"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fonction",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "genre",
+            "fieldType": "Genre",
+            "fieldValues": "Feminin,Masculin",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateNaissance",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170420222052",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "personne",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,30 @@
+
+<div>
+    <h2><span data-translate="etatcivilApp.pieceJointe.detail.title">Piece Jointe</span> {{vm.pieceJointe.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="etatcivilApp.pieceJointe.nom">Nom</span></dt>
+        <dd>
+            <div ng-if="vm.pieceJointe.nom">
+                <a ng-click="vm.openFile(vm.pieceJointe.nomContentType, vm.pieceJointe.nom)" data-translate="entity.action.open">open</a>
+                {{vm.pieceJointe.nomContentType}}, {{vm.byteSize(vm.pieceJointe.nom)}}
+            </div>
+        </dd>
+        <dt><span data-translate="etatcivilApp.pieceJointe.naissance">Naissance</span></dt>
+        <dd>
+            <a ui-sref="naissance-detail({id:vm.pieceJointe.naissance.id})">{{vm.pieceJointe.naissance.numeroRegistre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="piece-jointe-detail.edit({id:vm.pieceJointe.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
