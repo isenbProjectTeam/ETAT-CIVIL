@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('etatcivilApp')
         .controller('NaissanceDialogController', NaissanceDialogController);
 
-    NaissanceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Naissance', 'User', 'Personne', 'Ville'];
+    NaissanceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$state', 'DataUtils', 'entity', 'Naissance', 'User', 'Personne', 'Ville', 'Pays'];
 
-    function NaissanceDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Naissance, User, Personne, Ville) {
+    function NaissanceDialogController($timeout, $scope, $stateParams, $state, DataUtils, entity, Naissance, User, Personne, Ville, Pays) {
         var vm = this;
 
         vm.naissance = entity;
@@ -19,17 +19,24 @@
         vm.save = save;
         vm.users = User.query();
         vm.personnes = Personne.query();
+        vm.pays = Pays.query();
         vm.villes = Ville.query();
-
-        $timeout(function (){
+        vm.naissance.dateDeclaration = new Date();
+        vm.modifierVillePourEnfant = modifierVillePourEnfant;
+        vm.modifierVillePourPere= modifierVillePourPere;
+        vm.modifierVillePourMere= modifierVillePourMere;
+        vm.villesNaissanceEnfant = [];
+        vm.villesNaissancePere = [];
+        vm.villesNaissanceMere= [];
+        $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        function clear () {
-            $uibModalInstance.dismiss('cancel');
+        function clear() {
+            $state.go('naissance', null, {reload: 'naissance'});
         }
 
-        function save () {
+        function save() {
             vm.isSaving = true;
             if (vm.naissance.id !== null) {
                 Naissance.update(vm.naissance, onSaveSuccess, onSaveError);
@@ -38,20 +45,48 @@
             }
         }
 
-        function onSaveSuccess (result) {
+        function onSaveSuccess(result) {
             $scope.$emit('etatcivilApp:naissanceUpdate', result);
-            $uibModalInstance.close(result);
+            $state.go('naissance', null, {reload: 'naissance'});
             vm.isSaving = false;
         }
 
-        function onSaveError () {
+        function onSaveError() {
             vm.isSaving = false;
         }
 
         vm.datePickerOpenStatus.dateDeclaration = false;
+        vm.datePickerOpenStatus.dateNaissance_enfant = false;
+        vm.datePickerOpenStatus.dateNaissance_mere = false;
 
-        function openCalendar (date) {
+        function openCalendar(date) {
             vm.datePickerOpenStatus[date] = true;
         }
+
+        function modifierVillePourEnfant() {
+            vm.villesNaissanceEnfant.length = 0;
+            vm.villes.forEach(function (ville) {
+                if (ville.pays.id == vm.naissance.enfant.paysNaissance.id) {
+                    vm.villesNaissanceEnfant.push(ville);
+                }
+            })
+        }
+        function modifierVillePourPere() {
+            vm.villesNaissancePere.length = 0;
+            vm.villes.forEach(function (ville) {
+                if (ville.pays.id == vm.naissance.pere.paysNaissance.id) {
+                    vm.villesNaissancePere.push(ville);
+                }
+            })
+        }
+        function modifierVillePourMere() {
+            vm.villesNaissanceMere.length = 0;
+            vm.villes.forEach(function (ville) {
+                if (ville.pays.id == vm.naissance.mere.paysNaissance.id) {
+                    vm.villesNaissanceMere.push(ville);
+                }
+            })
+        }
+
     }
 })();

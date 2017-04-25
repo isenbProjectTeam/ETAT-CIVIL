@@ -23,7 +23,32 @@
             "pere": "Pere",
             "mere": "Mere",
             "enfant": "Enfant",
-            "lieuDeclaration": "Lieu Declaration"
+            "lieuDeclaration": "Lieu Declaration",
+            "enfant" : {
+                "nom": "Nom",
+                "prenom": "Prenom",
+                "fonction": "Fonction",
+                "genre": "Genre",
+                "dateNaissance": "Date Naissance",
+                "adresse": "Adresse",
+                "paysNaissance": "Pays Naissance",
+                "villeNaissance": "Ville Naissance"
+            },
+            "parent" : {
+                "nom": "Nom",
+                "prenom": "Prenom",
+                "fonction": "Fonction",
+                "genre": "Genre",
+                "dateNaissance": "Date Naissance",
+                "adresse": "Adresse",
+                "paysNaissance": "Pays Naissance",
+                "villeNaissance": "Ville Naissance"
+            },
+            "Genre" : {
+                "Masculin": "Masculin",
+                "Feminin": "Feminin"
+            }
+
         }
     }
 }

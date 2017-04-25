@@ -94,7 +94,25 @@
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/naissance/naissance-dialog.html',
+                    controller: 'NaissanceDialogController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                entity: function () {
+                    return {
+                        numeroRegistre: null,
+                        mentionMarginale: null,
+                        dateDeclaration: null,
+                        id: null
+                    };
+                }
+            }
+
+           /* onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
                     templateUrl: 'app/entities/naissance/naissance-dialog.html',
                     controller: 'NaissanceDialogController',
@@ -116,7 +134,7 @@
                 }, function() {
                     $state.go('naissance');
                 });
-            }]
+            }]*/
         })
         .state('naissance.edit', {
             parent: 'naissance',
