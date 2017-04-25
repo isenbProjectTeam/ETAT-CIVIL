@@ -5,11 +5,12 @@
         .module('etatcivilApp')
         .controller('NaissanceDialogController', NaissanceDialogController);
 
-    NaissanceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$state', 'DataUtils', 'entity', 'Naissance', 'User', 'Personne', 'Ville', 'Pays'];
+    NaissanceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$state', 'DataUtils', 'entity', 'Naissance', 'User', 'Personne', 'Ville', 'Pays','PieceJointe'];
 
-    function NaissanceDialogController($timeout, $scope, $stateParams, $state, DataUtils, entity, Naissance, User, Personne, Ville, Pays) {
+    function NaissanceDialogController($timeout, $scope, $stateParams, $state, DataUtils, entity, Naissance, User, Personne, Ville, Pays,PieceJointe) {
         var vm = this;
-
+        vm.pieceJointe = PieceJointe;
+        vm.pieceJointeB = {nom:null,nomContentType:null};
         vm.naissance = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
@@ -87,6 +88,28 @@
                 }
             })
         }
+
+        vm.setNom = function ($file, pieceJointe) {
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        pieceJointe.nom = base64Data;
+                        pieceJointe.nomContentType = $file.type;
+                    });
+                });
+            }
+        }
+
+        vm.setNomB = function ($file, pieceJointe) {
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        pieceJointe.nom = base64Data;
+                        pieceJointe.nomContentType = $file.type;
+                    });
+                });
+            }
+        };
 
     }
 })();

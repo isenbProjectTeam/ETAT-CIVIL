@@ -585,6 +585,82 @@
                     </div>
                 </div>
 
+                <!--pieces jointes-->
+                <div class="form-group" ngf-drop ngf-change="vm.setNom($file, vm.pieceJointe)">
+                    <label class="control-label" data-translate="etatcivilApp.pieceJointe.nom" for="field_nom">Nom</label>
+                    <div>
+                        <div ng-if="vm.pieceJointe.nom" class="help-block clearfix">
+                            <a class="pull-left" ng-click="vm.openFile(vm.pieceJointe.nomContentType, vm.pieceJointe.nom)" data-translate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{vm.pieceJointe.nomContentType}}, {{vm.byteSize(vm.pieceJointe.nom)}}</span>
+                            <button type="button" ng-click="vm.pieceJointe.nom=null;vm.pieceJointe.nomContentType=null;"
+                                    class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <button type="button" ngf-select class="btn btn-default btn-block"
+                                ngf-change="vm.setNom($file, vm.pieceJointe)" data-translate="entity.action.addblob">
+                            Add blob
+                        </button>
+                    </div>
+                    <input type="hidden" class="form-control" name="nom" id="field_nom"
+                           ng-model="vm.pieceJointe.nom"
+                           required minbytes="1" maxbytes="3145728"/>
+                    <input type="hidden" class="form-control" name="nomContentType" id="field_nomContentType"
+                           ng-model="vm.pieceJointe.nomContentType" />
+                    <div ng-show="editForm.nom.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.nom.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.nom.$error.minbytes" data-translate="entity.validation.minbytes" translate-value-min="1">
+                            This field should be at least 1.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.nom.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="3145728">
+                            This field cannot be more than 3145728.
+                        </p>
+                    </div>
+                </div>
+
+                <!--piece jointe b-->
+                <div class="form-group" ngf-drop ngf-change="vm.setNomB($file, vm.pieceJointeB)">
+                    <label class="control-label" data-translate="etatcivilApp.pieceJointe.nom" for="field_nomB">Nom</label>
+                    <div>
+                        <div ng-if="vm.pieceJointeB.nom" class="help-block clearfix">
+                            <a class="pull-left" ng-click="vm.openFile(vm.pieceJointeB.nomContentType, vm.pieceJointeB.nom)" data-translate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{vm.pieceJointeB.nomContentType}}, {{vm.byteSize(vm.pieceJointeB.nom)}}</span>
+                            <button type="button" ng-click="vm.pieceJointeB.nom=null;vm.pieceJointeB.nomContentType=null;"
+                                    class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <button type="button" ngf-select class="btn btn-default btn-block"
+                                ngf-change="vm.setNomB($file, vm.pieceJointeB)" data-translate="entity.action.addblob">
+                            Add blob
+                        </button>
+                    </div>
+                    <input type="hidden" class="form-control" name="nomB" id="field_nomB"
+                           ng-model="vm.pieceJointeB.nom"
+                           required minbytes="1" maxbytes="3145728"/>
+                    <input type="hidden" class="form-control" name="nomContentType" id="field_nomContentTypeB"
+                           ng-model="vm.pieceJointeB.nomContentType" />
+                    <div ng-show="editForm.nomB.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.nomB.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.nomB.$error.minbytes" data-translate="entity.validation.minbytes" translate-value-min="1">
+                            This field should be at least 1.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.nomB.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="3145728">
+                            This field cannot be more than 3145728.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
